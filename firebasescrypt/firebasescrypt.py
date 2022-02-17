@@ -27,10 +27,11 @@ def generate_derived_key(
         mem_cost: int
 ) -> bytes:
     """Generates derived key from known parameters"""
+    
     n = 2 ** mem_cost
     p = 1
-    user_salt: bytes = base64.b64decode(salt)
-    salt_separator: bytes = base64.b64decode(salt_separator)
+    user_salt: bytes = base64.urlsafe_b64decode(salt)
+    salt_separator: bytes = base64.urlsafe_b64decode(salt_separator)
     password: bytes = bytes(password, 'utf-8')
 
     derived_key = hashlib.scrypt(
