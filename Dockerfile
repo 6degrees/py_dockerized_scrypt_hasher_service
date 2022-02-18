@@ -2,6 +2,7 @@ FROM python:3
 
 ADD main.py /
 ADD requirements.txt /
+ADD firebasescrypt /firebasescrypt
 
 RUN pip install --upgrade pip
 RUN pip install flask python-dotenv

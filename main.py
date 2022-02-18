@@ -19,12 +19,12 @@ def hash():
     password_salt = urllib.parse.unquote(request.args.get('salt', ""))
     
     if not isBase64(password_salt):
-        return "salt is not in correct syntax";
+        return "salt is not in correct syntax"
 
     # Sample Password hash parameters from Firebase Console.
     salt_separator = os.getenv('base64_salt_separator')
     signer_key = os.getenv('base64_signer_key')
-    signer_key: bytes = base64.b64decode(signer_key)
+    signer_key: bytes = base64.urlsafe_b64decode(signer_key)
     rounds= int(os.getenv('rounds'))
     mem_cost= int(os.getenv('mem_cost'))
     derived_key = firebasescrypt.generate_derived_key(password_native, password_salt, salt_separator, rounds, mem_cost)
@@ -41,4 +41,4 @@ def isBase64(sb):
         return False
 
 if __name__ == "__main__":
-    app.run(port=5959)
+    app.run(host='0.0.0.0', port=5959)

@@ -74,7 +74,7 @@ def verify_password(
 ) -> bool:
     """Verify if password matches known hash"""
     derived_key: bytes = generate_derived_key(password, salt, salt_separator, rounds, mem_cost)
-    signer_key: bytes = base64.b64decode(signer_key)
+    signer_key: bytes = base64.urlsafe_b64decode(signer_key)
 
     result = encrypt(signer_key, derived_key)
 

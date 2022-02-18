@@ -6,13 +6,13 @@
 
 1. First, you need some configuration variables from your firebase project, you can get them from firebase->authentication-> little three dots top right of users table
 
-2. create an `.env` file in the project root directory, next to Dockerfile with the below content
+2. create an `docker_env_file` file in the project root directory, next to Dockerfile with the below content. (You can rename the `docker_env_file.example` and use it)
 
     ```bash
-    base64_signer_key='get_from_your_firebase_project'
-    base64_salt_separator='get_from_your_firebase_project'
-    rounds=get_from_your_firebase_project
-    mem_cost=get_from_your_firebase_project
+    base64_signer_key=__get_from_your_firebase_project__
+    base64_salt_separator=__get_from_your_firebase_project__
+    rounds=__get_from_your_firebase_project__
+    mem_cost=__get_from_your_firebase_project__
     ```
 
 3. Next, run the below commands in the project folder (next to Dockerfile)
@@ -21,7 +21,7 @@
     $git clone this repo
     $cd firebasescrypt
     $docker build -t firebasescrypt
-    $docker run firebasescrypt
+    $docker run -p 5959 --env-file ./docker_env_file firebasescrypt
     ```
 
 Now you have a flask endpoint running at your machine at `http://127.0.0.1:5959` (unless you changed the port or put on a server)
