@@ -2,6 +2,10 @@
 
  Docker version to expose a Python (Flask) API endpoint that hashes to scrypt (firebase)
 
+```bash
+docker pull ghcr.io/6degrees/py_dockerized_scrypt_hasher_service:latest
+```
+
 ## Setup
 
 1. First, you need some configuration variables from your firebase project, you can get them from firebase->authentication-> little three dots top right of users table
@@ -18,10 +22,10 @@
 3. Next, run the below commands in the project folder (next to Dockerfile)
 
     ```bash
-    $git clone this repo
-    $cd firebasescrypt
-    $docker build -t firebasescrypt
-    $docker run -p 5959 --env-file ./docker_env_file firebasescrypt
+    git clone this repo
+    cd firebasescrypt
+    docker build -t firebasescrypt
+    docker run -p 5959 --env-file ./docker_env_file firebasescrypt
     ```
 
 Now you have a flask endpoint running at your machine at `http://127.0.0.1:5959` (unless you changed the port or put on a server)
